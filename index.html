@@ -1,27 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+
+  <style>
+    * {
+      padding: 10px;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      /* justify-content: ; */
+
+      min-height: 100vh;
+
+
+
+
+      text-align: center;
+
+    }
+
+    button {
+      padding: 20px 40px;
+      font-size: 40px;
+    }
+
+    textarea {
+      min-height: 500px;
+      font-size: 14px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    table>* {
+      background-color: white;
+      text-align: center;
+    }
+
+    .wish {
+      min-width: 70vw;
+      text-align: left;
+    }
+
+    h3 {
+      color: white
+    }
+  </style>
+
 </head>
 
-<body>
-  <h1>
-    Welcome to DeathWish
-  </h1>
-  <p>Since this trip might be your last...</p>
+<body
+  style="background-image: url('https://cdn.wionews.com/sites/default/files/styles/story_page/public/2018/09/12/47621-Bus-accident.PNG'); background-repeat: no-repeat; background-size: cover;">
+
+  <h1 style=" background-color: bisque ; border:4px solid tomato; color: rgb(7, 154, 29); font-size: 50px; ">
+    Welcome To DeathWish</h1>
+
+
+  <p style=" background-color: bisque ; border:3px solid tomato; color: rgb(7, 154, 29); font-size: 35px;">
+    Another activity is added to this trip since it's the last one youll'be joining!</p>
+
   <form>
-    <label for="death-wish">Please enter your death wishes</label><br>
-    <textarea name="death-wish" id="wish" cols="30" rows="10" required></textarea>
-    <br>
-    <button>Submit your wish</button>
+    <!--<center><legend><b>Last Wish</b></legend></center>-->
+    <label
+      style=" background-color: bisque ; border:2px solid tomato; color: rgb(7, 154, 29); font-size: 20px; margin-left: 100px; margin-right: 100px;"
+      for="wish">Type Your Wish:</label><br>
+    <textarea placeholder="longer the better :P" id="wish" style="background-color: cyan; opacity:0.9;" name="wish"
+      rows="10" cols="90"></textarea><br>
+
+    <button data-submit-button style="background-color:Grey; color: white;" type="button">Submit</button>
   </form>
+  <div>
+    <h3>Top Wishes!</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>
+            S.no.
+          </th>
+          <th class="wish">
+            Wish
+          </th>
+        </tr>
+      </thead>
 
+      <tbody data-tbody>
 
+      </tbody>
 
+    </table>
+
+  </div>
+
+  <script src="./main.js" type="module"></script>
 </body>
 
 </html>
