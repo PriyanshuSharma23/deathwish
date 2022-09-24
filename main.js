@@ -38,7 +38,7 @@ document.querySelector("button").addEventListener("click", (e) => {
 
   document.querySelector("[data-submit-button]").disabled = true;
 
-  if (wish === "") {
+  if (wish.trim() === "") {
     document.querySelector("[data-submit-button]").disabled = false;
     return;
   }
