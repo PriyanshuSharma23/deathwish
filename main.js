@@ -25,6 +25,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const collectionRef = collection(db, "wishes");
+const q = query(collection(db, "wishes"), orderBy("length", "desc"), limit(10));
 
 document.addEventListener("DOMContentLoaded", async () => {
   renderWishes();
@@ -48,7 +49,6 @@ document.querySelector("button").addEventListener("click", (e) => {
   })
     .then((docRef) => {
       console.log("Document written with ID: ", docRef.id);
-      alert("Wish added successfully");
     })
     .catch((error) => {
       console.error("Error adding document: ", error);
@@ -61,17 +61,12 @@ document.querySelector("button").addEventListener("click", (e) => {
 });
 
 async function getWishes() {
-  const wishesRef = collection(db, "wishes");
-
-  // query by wish length
-  const q = query(wishesRef, orderBy("length", "desc"), limit(10));
-
   const querySnapshot = await getDocs(q);
 
   return querySnapshot;
 }
 
-onSnapshot(collectionRef, (snapshot) => {
+onSnapshot(q, (snapshot) => {
   renderWishes(snapshot);
 });
 
