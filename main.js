@@ -7,6 +7,7 @@ import {
   orderBy,
   query,
   limit,
+  onSnapshot,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -48,8 +49,6 @@ document.querySelector("button").addEventListener("click", (e) => {
     .then((docRef) => {
       console.log("Document written with ID: ", docRef.id);
       alert("Wish added successfully");
-
-      renderWishes();
     })
     .catch((error) => {
       console.error("Error adding document: ", error);
@@ -72,14 +71,24 @@ async function getWishes() {
   return querySnapshot;
 }
 
-async function renderWishes() {
-  const wishes = await getWishes();
+onSnapshot(collectionRef, (snapshot) => {
+  renderWishes(snapshot);
+});
+
+async function renderWishes(snapshot) {
+  let wishes;
+  if (!snapshot) wishes = await getWishes();
+  else wishes = snapshot;
+
+  console.log(wishes.docs);
 
   if (wishes.docs.length === 0) {
     document.querySelector("tbody").innerHTML = tableRow(
       "-",
       "No wishes yet. Be the first to wish."
     );
+
+    return;
   }
 
   document.querySelector("tbody").innerHTML = wishes.docs
